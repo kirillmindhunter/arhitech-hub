@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вход — AI Architect Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+<div class="bg-aurora"></div>
+
+<header class="main-header">
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-mark">A</span>
+      <span class="logo-text">AI Architect Hub</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#categories">Каталог</a></li>
+      <li><a href="/#pricing">Тарифы</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h1 id="formTitle">Вход</h1>
+    <p class="sub" id="formSub">Войдите, чтобы пользоваться ИИ-чатами и копить искры (✦).</p>
+
+    <form id="authForm">
+      <div id="nameField" style="display:none">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Иван Петров">
+      </div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.ru">
+
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" required minlength="8" placeholder="Минимум 8 символов">
+
+      <button type="submit" class="btn btn-primary" id="submitBtn">Войти</button>
+
+      <div class="auth-error" id="authError"></div>
+    </form>
+
+    <div class="divider">или войти через</div>
+
+    <div class="oauth-btns" id="oauthBtns">
+      <!-- OAuth кнопки рендерятся динамически -->
+    </div>
+
+    <p class="link">
+      <span id="switchHint">Нет аккаунта? </span>
+      <a href="#" id="switchMode">Зарегистрироваться</a>
+    </p>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+const form = document.getElementById('authForm');
+const error = document.getElementById('authError');
+const nameField = document.getElementById('nameField');
+const submitBtn = document.getElementById('submitBtn');
+const formTitle = document.getElementById('formTitle');
+const formSub = document.getElementById('formSub');
+const switchMode = document.getElementById('switchMode');
+const switchHint = document.getElementById('switchHint');
+
+let mode = location.hash === '#register' ? 'register' : 'login';
+
+function renderMode(){
+  if (mode === 'register') {
+    formTitle.textContent = 'Регистрация';
+    formSub.textContent = 'Создайте аккаунт и получите 50 ✦ в подарок.';
+    submitBtn.textContent = 'Создать аккаунт';
+    nameField.style.display = '';
+    switchHint.textContent = 'Уже есть аккаунт? ';
+    switchMode.textContent = 'Войти';
+  } else {
+    formTitle.textContent = 'Вход';
+    formSub.textContent = 'Войдите, чтобы пользоваться ИИ-чатами и копить искры (✦).';
+    submitBtn.textContent = 'Войти';
+    nameField.style.display = 'none';
+    switchHint.textContent = 'Нет аккаунта? ';
+    switchMode.textContent = 'Зарегистрироваться';
+  }
+}
+renderMode();
+
+switchMode.addEventListener('click', e => {
+  e.preventDefault();
+  mode = mode === 'login' ? 'register' : 'login';
+  location.hash = mode === 'register' ? '#register' : '';
+  renderMode();
+  error.classList.remove('show');
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  error.classList.remove('show');
+  const data = Object.fromEntries(new FormData(form));
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Отправка...';
+  try {
+    const r = await fetch('/api/auth/' + mode, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await r.json();
+    if (!r.ok) throw new Error(result.error || 'Ошибка');
+    location.href = '/cabinet.html';
+  } catch (err) {
+    error.textContent = err.message;
+    error.classList.add('show');
+    submitBtn.disabled = false;
+    renderMode();
+  }
+});
+
+// OAuth кнопки
+fetch('/api/oauth/providers').then(r => r.json()).then(p => {
+  const box = document.getElementById('oauthBtns');
+  const buttons = [];
+  if (p.google) buttons.push(`<a href="/api/oauth/google" class="oauth-btn"><span class="ic g">G</span> Войти через Google</a>`);
+  if (p.yandex) buttons.push(`<a href="/api/oauth/yandex" class="oauth-btn"><span class="ic y">Я</span> Войти через Яндекс</a>`);
+  if (p.vk)     buttons.push(`<a href="/api/oauth/vk" class="oauth-btn"><span class="ic v">VK</span> Войти через ВКонтакте</a>`);
+  if (buttons.length === 0) buttons.push(`<div style="text-align:center;color:var(--text-mute);font-size:12px">OAuth-провайдеры пока не настроены (см. .env)</div>`);
+  box.innerHTML = buttons.join('');
+});
+
+if (new URLSearchParams(location.search).get('error') === 'oauth') {
+  error.textContent = 'Не удалось авторизоваться через OAuth-провайдера. Попробуйте ещё раз.';
+  error.classList.add('show');
+}
+</script>
+</body>
+</html>

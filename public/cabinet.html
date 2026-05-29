@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Личный кабинет — AI Architect Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+<div class="bg-aurora"></div>
+
+<header class="main-header">
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-mark">A</span>
+      <span class="logo-text">AI Architect Hub</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#categories">Каталог</a></li>
+      <li><a href="/#workspace">Чат</a></li>
+      <li><a href="/cabinet.html">Кабинет</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container cab-wrap">
+  <div class="cab-grid">
+
+    <!-- БОКОВАЯ ПАНЕЛЬ -->
+    <aside class="cab-side reveal">
+      <div class="avatar-big" id="bigAvatar">?</div>
+      <h2 id="userName">Загрузка...</h2>
+      <div class="em" id="userEmail">—</div>
+      <nav class="cab-nav">
+        <a href="#dashboard" class="active" data-tab="dashboard">⚙ Обзор</a>
+        <a href="#billing" data-tab="billing">✦ Искры и тарифы</a>
+        <a href="#history" data-tab="history">⌘ История</a>
+        <a href="#" id="logoutLink" class="danger" style="color:var(--accent-3);margin-top:14px">⏻ Выйти</a>
+      </nav>
+    </aside>
+
+    <!-- ОСНОВНОЕ -->
+    <main class="cab-main">
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="tab-pane">
+        <div class="cab-card reveal">
+          <h3>Баланс кошелька</h3>
+          <div class="balance-box">
+            <div>
+              <div class="num"><span id="balanceNum">0</span> <span class="spark">✦</span></div>
+              <div class="sub">
+                Тариф: <strong id="planName">Free</strong>
+                <span id="planUntil" style="color:var(--text-mute)"></span>
+              </div>
+            </div>
+            <div class="actions">
+              <a href="#billing" class="btn btn-primary">Пополнить</a>
+              <a href="/#workspace" class="btn btn-secondary">К чату →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cab-card reveal" style="margin-top:20px">
+          <h3>Что такое искры (✦)?</h3>
+          <p style="color:var(--text-dim);font-size:14px;line-height:1.65">
+            Искра — единая внутренняя валюта платформы.<br>
+            <strong>1 ✦ ≈ 1 ₽ внутреннего баланса.</strong> Стоимость запроса зависит от модели:
+            простые ответы у GPT-4o mini обходятся в 1–3 ✦, а длинная аналитика у Claude 3.5 Sonnet — около 30–60 ✦.<br>
+            Подписка ежемесячно пополняет баланс. Неизрасходованные искры с подписки сгорают в конце цикла, разовые покупки — не сгорают.
+          </p>
+        </div>
+      </section>
+
+      <!-- BILLING -->
+      <section id="billing" class="tab-pane" style="display:none">
+        <div class="cab-card reveal">
+          <h3>Разовое пополнение</h3>
+          <p style="color:var(--text-dim);margin-bottom:16px;font-size:14px">Без подписки. Искры не сгорают.</p>
+          <div class="packs-grid" id="packs"></div>
+        </div>
+
+        <div class="cab-card reveal" style="margin-top:20px">
+          <h3>Подписки</h3>
+          <div class="pricing-grid" style="margin-top:14px" id="plans"></div>
+        </div>
+
+        <div class="cab-card reveal" style="margin-top:20px">
+          <h3>Способ оплаты</h3>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px">
+            <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;cursor:pointer">
+              <input type="radio" name="payMethod" value="yookassa" checked> ЮKassa (карты, СБП)
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;cursor:pointer">
+              <input type="radio" name="payMethod" value="robokassa"> Robokassa (карты, кошельки)
+            </label>
+          </div>
+          <p style="font-size:12px;color:var(--text-mute);margin-top:10px;font-family:var(--mono)">
+            Оплата принимается ООО «ЭтуальСтройПроект». Чек по 54-ФЗ придёт на email.
+          </p>
+        </div>
+      </section>
+
+      <!-- HISTORY -->
+      <section id="history" class="tab-pane" style="display:none">
+        <div class="cab-card reveal">
+          <h3>Последние операции</h3>
+          <div class="tx-list" id="txList">Загрузка...</div>
+        </div>
+
+        <div class="cab-card reveal" style="margin-top:20px">
+          <h3>Платежи</h3>
+          <div class="tx-list" id="payList">Загрузка...</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="payModal">
+  <div class="modal-inner" style="position:relative">
+    <button class="modal-close" id="modalClose">×</button>
+    <h2 id="modalTitle">Подтверждение</h2>
+    <p id="modalText">Вы будете переадресованы на платёжную систему.</p>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn btn-secondary" id="modalCancel">Отмена</button>
+      <button class="btn btn-primary" id="modalGo">Перейти к оплате</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/main.js"></script>
+<script src="/js/app.js"></script>
+<script>
+let me = null;
+let pending = null; // {target, targetId, label, amount}
+
+async function init(){
+  me = await AHub.loadUser();
+  if (!me) { location.href = '/login.html'; return; }
+  renderProfile();
+  loadPacks();
+  loadPlans();
+  loadTransactions();
+  loadPayments();
+  handleTabs();
+  handlePaymentResult();
+}
+
+function renderProfile(){
+  const init = (me.name || me.email || '?').trim().charAt(0).toUpperCase();
+  document.getElementById('bigAvatar').textContent = init;
+  document.getElementById('userName').textContent = me.name || 'Пользователь';
+  document.getElementById('userEmail').textContent = me.email || '';
+  document.getElementById('balanceNum').textContent = me.sparks_balance;
+  document.getElementById('planName').textContent = (me.subscription_plan || 'free').toUpperCase();
+  if (me.subscription_until) {
+    document.getElementById('planUntil').textContent = ' · до ' + new Date(me.subscription_until).toLocaleDateString('ru');
+  }
+}
+
+async function loadPacks(){
+  const r = await fetch('/api/billing/packs');
+  const packs = await r.json();
+  const box = document.getElementById('packs');
+  box.innerHTML = packs.map((p, i) => `
+    <div class="pack ${i === 2 ? 'best' : ''}" data-id="${p.id}" data-rub="${p.rub}" data-label="${p.label}">
+      <div class="pack-spark">${(p.sparks + (p.bonus || 0)).toLocaleString()} ✦</div>
+      <div class="pack-bonus">${p.bonus ? '+' + p.bonus + ' бонус' : '\u00a0'}</div>
+      <div class="pack-price">${p.rub.toLocaleString()} ₽</div>
+    </div>
+  `).join('');
+  box.querySelectorAll('.pack').forEach(el => {
+    el.addEventListener('click', () => {
+      pending = { target: 'pack', targetId: el.dataset.id, label: el.dataset.label, amount: el.dataset.rub };
+      openModal();
+    });
+  });
+}
+
+async function loadPlans(){
+  const r = await fetch('/api/billing/plans');
+  const plans = await r.json();
+  const box = document.getElementById('plans');
+  const order = ['free', 'eco', 'engineer', 'company'];
+  box.innerHTML = order.map(key => {
+    const p = plans[key];
+    if (!p) return '';
+    const featured = key === 'engineer' ? 'featured' : '';
+    const cur = (me.subscription_plan || 'free') === key;
+    const btn = key === 'free'
+      ? '<span class="btn btn-secondary" style="opacity:.6;cursor:default;width:100%;justify-content:center">Базовый</span>'
+      : cur
+        ? '<span class="btn btn-secondary" style="opacity:.6;cursor:default;width:100%;justify-content:center">Активен</span>'
+        : `<button class="btn btn-primary" data-plan="${key}" data-label="${p.name}" data-rub="${p.price_rub}" style="width:100%;justify-content:center">Оформить</button>`;
+    return `
+      <div class="plan ${featured}">
+        <h3>${p.name}</h3>
+        <div class="price">${p.price_rub.toLocaleString()} ₽ <small>/ мес</small></div>
+        <div class="price-note">${p.sparks_per_month.toLocaleString()} ✦ каждый месяц</div>
+        <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+        ${btn}
+      </div>
+    `;
+  }).join('');
+  box.querySelectorAll('button[data-plan]').forEach(b => {
+    b.addEventListener('click', () => {
+      pending = { target: 'plan', targetId: b.dataset.plan, label: 'Подписка ' + b.dataset.label, amount: b.dataset.rub };
+      openModal();
+    });
+  });
+}
+
+async function loadTransactions(){
+  const r = await fetch('/api/user/transactions', { credentials: 'include' });
+  const list = await r.json();
+  const box = document.getElementById('txList');
+  if (!list.length) { box.innerHTML = '<p style="color:var(--text-mute);font-size:13px">Пока нет операций.</p>'; return; }
+  box.innerHTML = list.map(t => {
+    const date = new Date(t.created_at).toLocaleString('ru');
+    const cls = t.amount > 0 ? 'in' : 'out';
+    const cls2 = t.type === 'subscription' ? 'sub' : cls;
+    const sign = t.amount > 0 ? '+' : '';
+    const icon = t.type === 'spend' ? '✦' : t.type === 'topup' ? '↑' : t.type === 'subscription' ? '⌘' : t.type === 'bonus' ? '★' : '↻';
+    const title = t.type === 'spend' ? `Запрос к ${t.meta?.model || 'ИИ'}`
+                : t.type === 'topup' ? 'Пополнение баланса'
+                : t.type === 'subscription' ? `Подписка ${t.meta?.plan || ''}`
+                : t.type === 'bonus' ? (t.meta?.reason || 'Бонус')
+                : 'Операция';
+    return `
+      <div class="tx-row">
+        <div class="tx-icon ${cls2}">${icon}</div>
+        <div class="tx-info">
+          <div class="title">${title}</div>
+          <div class="date">${date}</div>
+        </div>
+        <div class="tx-amount ${t.amount > 0 ? 'plus' : 'minus'}">${sign}${t.amount} ✦</div>
+        <div class="tx-balance">баланс ${t.balance_after}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function loadPayments(){
+  const r = await fetch('/api/user/payments', { credentials: 'include' });
+  const list = await r.json();
+  const box = document.getElementById('payList');
+  if (!list.length) { box.innerHTML = '<p style="color:var(--text-mute);font-size:13px">Платежей пока нет.</p>'; return; }
+  box.innerHTML = list.map(p => {
+    const status = ({pending:'⏳ Ожидает', succeeded:'✓ Оплачен', failed:'✗ Не удался', refunded:'↩ Возврат'})[p.status] || p.status;
+    return `
+      <div class="tx-row">
+        <div class="tx-icon ${p.status === 'succeeded' ? 'in' : 'out'}">₽</div>
+        <div class="tx-info">
+          <div class="title">${p.provider.toUpperCase()} · ${p.plan ? 'Подписка ' + p.plan : '+' + p.sparks_to_add + ' ✦'}</div>
+          <div class="date">${new Date(p.created_at).toLocaleString('ru')}</div>
+        </div>
+        <div class="tx-amount">${p.amount_rub} ₽</div>
+        <div class="tx-balance">${status}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function handleTabs(){
+  function show(tab){
+    document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+    const el = document.getElementById(tab);
+    if (el) el.style.display = '';
+    document.querySelectorAll('.cab-nav a[data-tab]').forEach(a => {
+      a.classList.toggle('active', a.dataset.tab === tab);
+    });
+  }
+  document.querySelectorAll('.cab-nav a[data-tab]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      location.hash = a.dataset.tab;
+      show(a.dataset.tab);
+    });
+  });
+  const initial = location.hash.replace('#', '') || 'dashboard';
+  show(initial);
+}
+
+function openModal(){
+  document.getElementById('modalTitle').textContent = pending.label;
+  document.getElementById('modalText').textContent =
+    `Сумма к оплате: ${parseInt(pending.amount).toLocaleString()} ₽. Вы будете переадресованы на платёжный шлюз.`;
+  document.getElementById('payModal').classList.add('open');
+}
+document.getElementById('modalClose').addEventListener('click', () => document.getElementById('payModal').classList.remove('open'));
+document.getElementById('modalCancel').addEventListener('click', () => document.getElementById('payModal').classList.remove('open'));
+document.getElementById('modalGo').addEventListener('click', async () => {
+  const method = document.querySelector('input[name="payMethod"]:checked').value;
+  const btn = document.getElementById('modalGo');
+  btn.disabled = true; btn.textContent = 'Создаём платёж...';
+  try {
+    const r = await fetch('/api/billing/create-payment', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ method, target: pending.target, targetId: pending.targetId })
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error);
+    location.href = data.redirectUrl;
+  } catch (e) {
+    alert('Ошибка: ' + e.message);
+    btn.disabled = false; btn.textContent = 'Перейти к оплате';
+  }
+});
+
+function handlePaymentResult(){
+  const p = new URLSearchParams(location.search).get('payment');
+  if (p === 'success') {
+    // подождём вебхук
+    setTimeout(async () => {
+      await AHub.refreshBalance();
+      init();
+    }, 1500);
+  }
+}
+
+document.getElementById('logoutLink').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+  location.href = '/';
+});
+
+init();
+</script>
+</body>
+</html>

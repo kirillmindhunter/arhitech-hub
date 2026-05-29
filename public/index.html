@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Architect Hub — ИИ для проектирования и строительства</title>
+<meta name="description" content="Единая платформа: GPT-4o, Claude, DeepSeek, Qwen, GigaChat, YandexGPT в одном чате. Платите искрами — пользуйтесь любыми моделями.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/theme.css">
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-noise"></div>
+<div class="bg-aurora"></div>
+
+<header class="main-header">
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <span class="logo-mark">A</span>
+      <span class="logo-text">AI Architect Hub</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#categories">Каталог</a></li>
+      <li><a href="#workspace">Рабочая зона</a></li>
+      <li><a href="#pricing">Тарифы</a></li>
+      <li><a href="#about">О платформе</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="reveal-left">
+      <div class="eyebrow"><span class="dot"></span>GPT-4o · Claude · DeepSeek · Qwen · GigaChat · YandexGPT</div>
+      <span class="hero-scramble" data-scramble="генерация концепта · 12 сек|расчёт нагрузок · готов|ТЗ на дом 150 м² · готов|анализ инсоляции · готов"></span>
+      <h1 class="hero-title">
+        <span class="line1">Все ИИ для архитектуры</span>
+        <span class="accent">в одном чате</span>
+      </h1>
+      <p class="hero-sub">Подключитесь к лучшим нейросетям через единый кабинет. Платите искрами (✦) — расходуйте на любую модель. Без VPN, без зарубежных карт.</p>
+      <div class="hero-buttons">
+        <a href="/login.html#register" class="btn btn-primary">Начать бесплатно (50 ✦) →</a>
+        <a href="#workspace" class="btn btn-secondary">Попробовать чат</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">категорий</div></div>
+        <div class="stat"><div class="num" data-count="10" data-suffix="+">0</div><div class="lbl">моделей ИИ</div></div>
+        <div class="stat"><div class="num" data-count="1" data-suffix=" ✦ = 1 ₽">0</div><div class="lbl">прозрачная цена</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <canvas id="heroCanvas"></canvas>
+      <div class="hv-pulse"></div>
+      <div class="hv-card hv-1"><div class="ic">◆</div><div><strong>GPT-4o</strong><div class="sub">analysis · 8s</div></div></div>
+      <div class="hv-card hv-2"><div class="ic">▲</div><div><strong>Claude 3.5</strong><div class="sub">TZ · 12s</div></div></div>
+      <div class="hv-card hv-3"><div class="ic">●</div><div><strong>YandexGPT</strong><div class="sub">СП 70 · 5s</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="m-item">GPT-4o</span>
+    <span class="m-item">Claude 3.5</span>
+    <span class="m-item">OpenAI o1</span>
+    <span class="m-item">DeepSeek V3</span>
+    <span class="m-item">Qwen Max</span>
+    <span class="m-item">GigaChat Pro</span>
+    <span class="m-item">YandexGPT</span>
+    <span class="m-item">Midjourney</span>
+    <span class="m-item">Stable Diffusion</span>
+    <span class="m-item">Autodesk Forma</span>
+    <span class="m-item">GPT-4o</span>
+    <span class="m-item">Claude 3.5</span>
+    <span class="m-item">OpenAI o1</span>
+    <span class="m-item">DeepSeek V3</span>
+    <span class="m-item">Qwen Max</span>
+    <span class="m-item">GigaChat Pro</span>
+    <span class="m-item">YandexGPT</span>
+    <span class="m-item">Midjourney</span>
+    <span class="m-item">Stable Diffusion</span>
+    <span class="m-item">Autodesk Forma</span>
+  </div>
+</div>
+
+<!-- КАТЕГОРИИ -->
+<section id="categories" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Каталог</div>
+      <h2 class="section-title">Шесть направлений <span class="muted">для проектировщика</span></h2>
+      <p class="section-subtitle">Подберите инструмент под задачу: от первого скетча до сдачи объекта.</p>
+    </div>
+
+    <div class="cat-grid">
+      <a href="/pages/visualization.html" class="cat-card reveal">
+        <div class="cat-num">01</div><div class="cat-icon">◆</div>
+        <h3>Визуализация и рендер</h3>
+        <p>Концепт-арты, фасады, интерьеры, фотореалистичные рендеры за минуты.</p>
+        <div class="cat-tags"><span>Midjourney</span><span>SDXL</span><span>DALL·E 3</span><span>Leonardo</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+      <a href="/pages/text-ai.html" class="cat-card reveal">
+        <div class="cat-num">02</div><div class="cat-icon">¶</div>
+        <h3>Текст, ТЗ и расчёты</h3>
+        <p>ТЗ, спецификации, пояснительные записки, нормативные ссылки.</p>
+        <div class="cat-tags"><span>GPT-4o</span><span>Claude 3.5</span><span>DeepSeek</span><span>YandexGPT</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+      <a href="/pages/bim-ai.html" class="cat-card reveal">
+        <div class="cat-num">03</div><div class="cat-icon">◈</div>
+        <h3>BIM и САПР-помощники</h3>
+        <p>Автоматизация Revit, AutoCAD, ArchiCAD, генеративный дизайн.</p>
+        <div class="cat-tags"><span>Forma</span><span>Hypar</span><span>TestFit</span><span>Snaptrude</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+      <a href="/pages/analysis.html" class="cat-card reveal">
+        <div class="cat-num">04</div><div class="cat-icon">∑</div>
+        <h3>Анализ и расчёты</h3>
+        <p>Конструктивные расчёты, энергоэффективность, оценка проектов.</p>
+        <div class="cat-tags"><span>Wolfram</span><span>Cove.tool</span><span>ClimateStudio</span><span>Kreo</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+      <a href="/pages/planning.html" class="cat-card reveal">
+        <div class="cat-num">05</div><div class="cat-icon">▦</div>
+        <h3>Планировки и генплан</h3>
+        <p>Автогенерация планировок, оптимизация участков, мастер-планы.</p>
+        <div class="cat-tags"><span>Maket.ai</span><span>Finch 3D</span><span>Planner 5D</span><span>ARK Lab</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+      <a href="/pages/construction.html" class="cat-card reveal">
+        <div class="cat-num">06</div><div class="cat-icon">▲</div>
+        <h3>Стройплощадка и контроль</h3>
+        <p>Видеоаналитика, контроль качества, безопасность, прогресс работ.</p>
+        <div class="cat-tags"><span>OpenSpace</span><span>Buildots</span><span>Doxel</span><span>Disperse</span></div>
+        <span class="cat-arrow">Перейти →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSPACE -->
+<section id="workspace" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Рабочая зона</div>
+      <h2 class="section-title">Чат с ИИ <span class="grad">прямо в браузере</span></h2>
+      <p class="section-subtitle">Выберите модель — отправьте запрос. Списание идёт по факту использования.</p>
+    </div>
+
+    <div class="workspace-wrap">
+      <aside class="ws-side reveal">
+        <h3>Модель</h3>
+        <label>Выберите ИИ</label>
+        <select id="provider"></select>
+        <p class="hint">
+          💡 Списание идёт по факту: точная стоимость зависит от длины ответа.
+          На главной — оценка для запроса ≈2000 токенов.
+        </p>
+        <a href="/cabinet.html#billing" class="btn btn-secondary" style="margin-top:14px;justify-content:center;width:100%">Пополнить искры</a>
+      </aside>
+
+      <div class="chat reveal">
+        <div class="chat-head">
+          <span class="status-dot"></span>
+          <span id="chatStatus">Загрузка моделей...</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="message ai-message"><strong>ИИ-ассистент</strong>Привет! Я подключён к 10+ моделям ИИ. Попроси меня составить ТЗ, рассчитать нагрузку, описать материал или сгенерировать концепт.<br><br>🔒 Для отправки нужно <a href="/login.html" style="color:var(--accent)">войти</a> — 50 ✦ в подарок при регистрации.</div>
+        </div>
+        <form id="chatForm" class="chat-input-area">
+          <textarea id="chatInput" placeholder="Например: составь ТЗ на двухэтажный жилой дом 150 м²..." rows="2"></textarea>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ТАРИФЫ -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>Тарифы</div>
+      <h2 class="section-title">Платите искрами — <span class="muted">а не за каждый API</span></h2>
+      <p class="section-subtitle">1 ✦ = 1 ₽. Подписка пополняет баланс ежемесячно. Разовые покупки — не сгорают.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="plan reveal">
+        <h3>Free</h3>
+        <div class="price">0 ₽ <small>/ навсегда</small></div>
+        <div class="price-note">50 ✦ в подарок при регистрации</div>
+        <ul>
+          <li>Каталог 50+ нейросетей</li>
+          <li>Базовые модели: GPT-4o mini, Claude Haiku, DeepSeek</li>
+          <li>Разовое пополнение искр</li>
+          <li>Реклама и партнёрские блоки</li>
+        </ul>
+        <a href="/login.html#register" class="btn btn-secondary">Начать бесплатно</a>
+      </div>
+
+      <div class="plan reveal">
+        <h3>ECO</h3>
+        <div class="price">490 ₽ <small>/ мес</small></div>
+        <div class="price-note">+ 700 ✦ ежемесячно</div>
+        <ul>
+          <li>700 ✦ каждый месяц</li>
+          <li>Все базовые модели</li>
+          <li>История чатов 30 дней</li>
+          <li>Без рекламы</li>
+        </ul>
+        <a href="/cabinet.html#billing" class="btn btn-secondary">Оформить ECO</a>
+      </div>
+
+      <div class="plan featured reveal">
+        <h3>Engineer</h3>
+        <div class="price">1 490 ₽ <small>/ мес</small></div>
+        <div class="price-note">+ 2 500 ✦ ежемесячно</div>
+        <ul>
+          <li>2 500 ✦ каждый месяц</li>
+          <li>GPT-4o, Claude 3.5 Sonnet, OpenAI o1</li>
+          <li><strong>СНиП/ГОСТ-ассистент (beta)</strong></li>
+          <li>Шаблоны ТЗ и промптов</li>
+          <li>Экспорт в PDF / DOCX</li>
+          <li>Приоритетная поддержка</li>
+        </ul>
+        <a href="/cabinet.html#billing" class="btn btn-primary">Оформить Engineer</a>
+      </div>
+
+      <div class="plan reveal">
+        <h3>Company</h3>
+        <div class="price">5 900 ₽ <small>/ мес</small></div>
+        <div class="price-note">+ 12 000 ✦ · до 10 пользователей</div>
+        <ul>
+          <li>12 000 ✦ каждый месяц</li>
+          <li>До 10 пользователей</li>
+          <li>Все модели + OpenAI o1</li>
+          <li>Общая база промптов студии</li>
+          <li>White-label, корпоративный API</li>
+          <li>SLA-поддержка 24ч</li>
+        </ul>
+        <a href="/cabinet.html#billing" class="btn btn-secondary">Оформить Company</a>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:30px;font-size:13px;color:var(--text-mute)">
+      Оплата принимается ООО «ЭтуальСтройПроект» через ЮKassa и Robokassa. Чеки по 54-ФЗ автоматически.
+    </p>
+  </div>
+</section>
+
+<!-- О ПЛАТФОРМЕ -->
+<section id="about" class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span>О платформе</div>
+      <h2 class="section-title">Зачем мы это сделали</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="ic">⚡</div><h3>Один кабинет</h3><p>Доступ к 10+ моделям без 10 подписок. Все ключи у нас, вы платите ₽ ваш.</p></div>
+      <div class="feat reveal"><div class="ic">🔐</div><h3>Российский биллинг</h3><p>ЮKassa и Robokassa. Закрывающие документы для ИП и юрлиц.</p></div>
+      <div class="feat reveal"><div class="ic">🧩</div><h3>Без VPN</h3><p>Прокси на нашей стороне — работают и OpenAI, и Claude, и российские модели.</p></div>
+      <div class="feat reveal"><div class="ic">🏗️</div><h3>Для инженеров</h3><p>СНиП-ассистент (beta), шаблоны ТЗ, ГОСТ-промпты, расчёты нагрузок.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="main-footer">
+  <div class="foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:14px"><span class="logo-mark">A</span><span class="logo-text">AI Architect Hub</span></div>
+      <p>ООО «ЭтуальСтройПроект» — единая точка входа в мир ИИ для архитекторов, проектировщиков и строителей.</p>
+    </div>
+    <div>
+      <h4>Каталог</h4>
+      <ul>
+        <li><a href="/pages/visualization.html">Визуализация</a></li>
+        <li><a href="/pages/text-ai.html">Текст и ТЗ</a></li>
+        <li><a href="/pages/bim-ai.html">BIM / САПР</a></li>
+        <li><a href="/pages/analysis.html">Анализ</a></li>
+        <li><a href="/pages/planning.html">Планировки</a></li>
+        <li><a href="/pages/construction.html">Стройплощадка</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Платформа</h4>
+      <ul>
+        <li><a href="#pricing">Тарифы</a></li>
+        <li><a href="/cabinet.html">Личный кабинет</a></li>
+        <li><a href="#workspace">Рабочая зона</a></li>
+        <li><a href="/login.html">Вход / Регистрация</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Поддержка</h4>
+      <ul>
+        <li><a href="#">support@etoile-stroy.ru</a></li>
+        <li><a href="#">Telegram-канал</a></li>
+        <li><a href="#">Документы и оферта</a></li>
+        <li><a href="#">Возврат средств</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 ООО «ЭтуальСтройПроект»</span>
+    <div class="links">
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Условия использования</a>
+      <a href="#">Оферта</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/ai-api.js"></script>
+</body>
+</html>
